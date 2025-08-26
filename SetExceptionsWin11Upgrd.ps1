@@ -14,7 +14,7 @@ Write-Host ""
 
 # Check for Administrator privileges
 if (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    Write-Host "[ERROR] This script must be run as Administrator!" -ForegroundColor Red
+    Write-Host "ERROR: This script must be run as Administrator!" -ForegroundColor Red
     Write-Host "Please right-click and select 'Run as Administrator'" -ForegroundColor Yellow
     pause
     exit 1
@@ -173,7 +173,7 @@ Environment Variables Set:
 $($envVars.Keys | ForEach-Object { "$_ = $($envVars[$_])" } | Out-String)
 "@ | Out-File -FilePath $exportPath -Force
     
-    Write-Host "[SUCCESS] Settings exported for verification" -ForegroundColor Green
+    Write-Host "SUCCESS: Settings exported for verification" -ForegroundColor Green
     Write-Host ""
     
 } catch {
@@ -182,13 +182,13 @@ $($envVars.Keys | ForEach-Object { "$_ = $($envVars[$_])" } | Out-String)
     Write-Host "                ERROR OCCURRED!" -ForegroundColor Red
     Write-Host "===============================================" -ForegroundColor Red
     Write-Host ""
-    Write-Host "[ERROR] $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host "ERROR: $($_.Exception.Message)" -ForegroundColor Red
     Write-Host ""
-    Write-Host "[INFO] Some settings may have been partially applied." -ForegroundColor Yellow
-    Write-Host "[INFO] Try running the script again as Administrator." -ForegroundColor Yellow
+    Write-Host "INFO: Some settings may have been partially applied." -ForegroundColor Yellow
+    Write-Host "INFO: Try running the script again as Administrator." -ForegroundColor Yellow
     exit 1
 }
 
 # Script completed - no pause needed for automated execution
-Write-Host "[COMPLETE] Script finished successfully." -ForegroundColor Green
+Write-Host "COMPLETE: Script finished successfully." -ForegroundColor Green
 exit 0
